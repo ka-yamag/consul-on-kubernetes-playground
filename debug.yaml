@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  containers:
+    - name: debug
+      # image: busybox@sha256:5b752a1ceda0bef058eba99a4b6bd74943dcb69b041dae6027601630b2895bd0
+      image: nginx@sha256:fcce3ef4eaa65b0e0984e6d59759f8c978edb4f83061c8f194f01010306ce64e
+      # image: centos@sha256:9fd67116449f225c6ef60d769b5219cf3daa831c5a0a6389bbdd7c952b7b352d
+      ports:
+        - containerPort: 8080
+          name: http

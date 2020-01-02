@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: counting
+spec:
+  containers:
+  - name: counting
+    image: katyamag/simple-count-api:arm
+    ports:
+    - containerPort: 8080
+      name: http

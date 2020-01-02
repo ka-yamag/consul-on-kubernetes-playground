@@ -1,0 +1,44 @@
+diff --git a/templates/server-statefulset.yaml b/templates/server-statefulset.yaml
+index 93f3392..d103690 100644
+--- a/templates/server-statefulset.yaml
++++ b/templates/server-statefulset.yaml
+@@ -124,8 +124,8 @@ spec:
+                 {{- end }}
+                 -server
+           volumeMounts:
+-            - name: data-{{ .Release.Namespace }}
+-              mountPath: /consul/data
++            # - name: data-{{ .Release.Namespace }}
++            #   mountPath: /consul/data
+             - name: config
+               mountPath: /consul/config
+             {{- range .Values.server.extraVolumes }}
+@@ -178,16 +178,16 @@ spec:
+       nodeSelector:
+         {{ tpl .Values.server.nodeSelector . | indent 8 | trim }}
+       {{- end }}
+-  volumeClaimTemplates:
+-    - metadata:
+-        name: data-{{ .Release.Namespace }}
+-      spec:
+-        accessModes:
+-          - ReadWriteOnce
+-        resources:
+-          requests:
+-            storage: {{ .Values.server.storage }}
+-        {{- if .Values.server.storageClass }}
+-        storageClassName: {{ .Values.server.storageClass }}
+-        {{- end }}
++  # volumeClaimTemplates:
++  #   - metadata:
++  #       name: data-{{ .Release.Namespace }}
++  #     spec:
++  #       accessModes:
++  #         - ReadWriteOnce
++  #       resources:
++  #         requests:
++  #           storage: {{ .Values.server.storage }}
++  #       {{- if .Values.server.storageClass }}
++  #       storageClassName: {{ .Values.server.storageClass }}
++  #       {{- end }}
+ {{- end }}

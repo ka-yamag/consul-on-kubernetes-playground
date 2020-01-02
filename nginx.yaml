@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+      annotations:
+        "consul.hashicorp.com/connect-inject": "true"
+    spec:
+      containers:
+        - name: nginx
+          image: "nginx@sha256:fcce3ef4eaa65b0e0984e6d59759f8c978edb4f83061c8f194f01010306ce64e"
+          ports:
+            - containerPort: 80
+      serviceAccountName: nginx
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx
